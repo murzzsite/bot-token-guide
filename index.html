@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Как передать бота на ваш токен</title>
+<meta name="description" content="Пошаговая инструкция: как создать Telegram-бота в BotFather и передать токен, чтобы бот принадлежал вам.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  :root{--bg:#fff;--bg-2:#f8faff;--border:#e2e8f0;--text:#0f172a;--text-2:#475569;--accent:#2563eb;--accent-dark:#1d4ed8;--accent-light:#eff6ff;--accent-mid:#dbeafe;--green-light:#dcfce7;--amber-light:#fef3c7;--red-light:#fee2e2;--shadow:0 4px 24px rgba(37,99,235,.08)}
+  *{box-sizing:border-box}html,body{margin:0}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.55;padding-inline:16px}
+  h1,h2{font-family:'Space Grotesk',sans-serif;text-wrap:balance;margin:0}
+  a{color:var(--accent)}
+  .wrap{max-width:760px;margin:0 auto;padding:24px 0 56px}
+  .hero{background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#fff;border-radius:18px;padding:32px 28px}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.85;margin-bottom:10px}
+  .hero h1{font-size:clamp(26px,5vw,34px);line-height:1.15}
+  .hero p{margin:14px 0 0;color:#dbeafe;max-width:540px}
+  .step{background:var(--bg-2);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:12px;padding:20px 22px;margin-top:16px;box-shadow:var(--shadow)}
+  .step-head{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+  .num{flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .step h2{font-size:19px}
+  .step p{margin:8px 0;color:var(--text-2)}
+  .step ul{margin:8px 0 8px 20px;padding:0;color:var(--text-2)}
+  .step li{margin:5px 0}
+  .step b{color:var(--text)}
+  .note{border-radius:10px;padding:12px 14px;margin:12px 0 4px;font-size:14.5px}
+  .note.tip{background:var(--green-light);color:#14532d}
+  .note.warn{background:var(--amber-light);color:#78350f}
+  .note.danger{background:var(--red-light);color:#7f1d1d}
+  .chat{background:#e8eef6;border-radius:14px;padding:14px;margin:12px 0 4px;display:flex;flex-direction:column;gap:8px;font-size:14.5px}
+  .msg{max-width:88%;padding:9px 12px;border-radius:12px;line-height:1.4;overflow-wrap:anywhere}
+  .me{align-self:flex-end;background:#d2e8ff;border-bottom-right-radius:4px}
+  .bot{align-self:flex-start;background:#fff;border-bottom-left-radius:4px}
+  .msg small{display:block;color:#64748b;font-size:12px;margin-bottom:2px}
+  code{background:#fff;border:1px solid var(--border);border-radius:6px;padding:1px 6px;font-size:13.5px;overflow-wrap:anywhere}
+  .cta{margin-top:20px;background:var(--accent-light);border:1px solid var(--accent-mid);border-radius:14px;padding:20px 22px;text-align:center}
+  .cta h2{font-size:20px;margin-bottom:6px}.cta p{margin:0;color:var(--text-2)}
+  @media (max-width:520px){.hero{padding:26px 20px}.step{padding:16px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Инструкция · 5 минут</div>
+    <h1>Как передать бота на ваш токен</h1>
+    <p>Так бот и вся его аудитория будут принадлежать вам, а не нам. Вы создаёте бота в Telegram сами, а мы только подключаем его к воронке.</p>
+  </header>
+
+  <section class="step">
+    <div class="step-head"><div class="num">1</div><h2>Откройте BotFather</h2></div>
+    <p>В Telegram введите в поиске <b>@BotFather</b> и откройте чат с аккаунтом, рядом с названием которого стоит синяя галочка. Нажмите <b>Start</b> (или «Запустить»).</p>
+    <div class="note warn">Внимание: похожих аккаунтов-подделок много. Нужен именно <b>@BotFather</b> с синей галочкой.</div>
+  </section>
+
+  <section class="step">
+    <div class="step-head"><div class="num">2</div><h2>Создайте нового бота</h2></div>
+    <p>Отправьте команду <code>/newbot</code>. BotFather задаст два вопроса, ответьте на них по порядку.</p>
+    <div class="chat">
+      <div class="msg me">/newbot</div>
+      <div class="msg bot"><small>BotFather</small>Alright, a new bot. How are we going to call it? Please choose a name for your bot.</div>
+      <div class="msg me">Анна Захарова | Кредиты</div>
+      <div class="msg bot"><small>BotFather</small>Good. Now let's choose a username for your bot. It must end in <code>bot</code>.</div>
+      <div class="msg me">zakharova_credit_bot</div>
+    </div>
+    <ul>
+      <li><b>Имя бота</b> показывается в чате, можно по-русски и с пробелами.</li>
+      <li><b>Username</b> пишется латиницей, без пробелов, и обязательно заканчивается на <code>bot</code>. Если BotFather ответил, что имя занято, придумайте другое.</li>
+    </ul>
+  </section>
+
+  <section class="step">
+    <div class="step-head"><div class="num">3</div><h2>Скопируйте токен</h2></div>
+    <p>После успешного создания BotFather пришлёт сообщение со ссылкой на бота и <b>токеном</b>. Это длинная строка вида <code>123456789:AAExampleExampleExample</code>. Нажмите на неё пальцем, и она скопируется.</p>
+    <div class="chat">
+      <div class="msg bot"><small>BotFather</small>Done! Congratulations on your new bot. You will find it at t.me/zakharova_credit_bot.<br><br>Use this token to access the HTTP API:<br><code>123456789:AAExample…</code></div>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-head"><div class="num">4</div><h2>Отправьте нам токен и username</h2></div>
+    <p>Пришлите в <b>рабочий чат проекта</b> два значения: токен и username бота (например, <code>@zakharova_credit_bot</code>). Больше от вас ничего не нужно, остальное мы подключим сами и пришлём ссылку на готового бота.</p>
+    <div class="note danger"><b>Токен — как пароль от бота.</b> Отправляйте его только нам в рабочий чат. Не публикуйте в соцсетях, в чатах и комментариях, не присылайте незнакомым людям.</div>
+  </section>
+
+  <section class="step">
+    <div class="step-head"><div class="num">5</div><h2>Что остаётся у вас</h2></div>
+    <ul>
+      <li>Бот зарегистрирован на ваш аккаунт Telegram: вы единственный владелец.</li>
+      <li>Название, аватар и описание бота вы меняете сами в BotFather командами <code>/setname</code>, <code>/setuserpic</code>, <code>/setdescription</code>.</li>
+      <li>Если токен случайно попал не туда, отправьте BotFather команду <code>/revoke</code>: старый токен перестанет работать, выдаст новый, а вы пришлёте его нам.</li>
+      <li>Если вы захотите прекратить работу с нами, команда <code>/revoke</code> отключит наш доступ к боту, а сам бот и его аудитория останутся у вас.</li>
+    </ul>
+    <div class="note tip">Команда <code>/revoke</code> выдаёт новый токен, поэтому до подключения не нажимайте её без необходимости: иначе бот перестанет отвечать, пока мы не получим новый токен.</div>
+  </section>
+
+  <div class="cta">
+    <h2>Что-то не получается?</h2>
+    <p>Напишите нам в рабочий чат, на каком шаге остановились, и мы подскажем. Токен при этом присылать не нужно, достаточно описать, что видите на экране.</p>
+  </div>
+</div>
+</body>
+</html>
